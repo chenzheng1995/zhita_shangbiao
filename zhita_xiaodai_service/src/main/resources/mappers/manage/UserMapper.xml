@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhita.dao.manage.UserMapper">
+  <resultMap id="BaseResultMap" type="com.zhita.model.manage.User">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="companyId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="phone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pwd" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="transactionPwd" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="trueName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="idCard" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="educationBackground" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="bankCard" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registeTime" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="loginTime" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="loginStatus" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="useMarket" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="drainageOfPlatformId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="workAddress" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="detailWorkAddress" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="state" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="headUrl" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="nationalEmblem" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="marriage" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="workUnit" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="nowLiveAddress" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="detailNowLiveAddress" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="linkmanOneRelation" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="linkmanOneName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="linkmanOnePhone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="linkmanTwoRelation" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="linkmanTwoName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="linkmanTwoPhone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registrationType" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, companyId, phone, pwd, transactionPwd, trueName, idCard, educationBackground, 
+    bankCard, registeTime, loginTime, loginStatus, useMarket, drainageOfPlatformId, workAddress, 
+    detailWorkAddress, state, headUrl, nationalEmblem, marriage, workUnit, nowLiveAddress, 
+    detailNowLiveAddress, linkmanOneRelation, linkmanOneName, linkmanOnePhone, linkmanTwoRelation, 
+    linkmanTwoName, linkmanTwoPhone, registrationType
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zhita.model.manage.User">
+    insert into user (id, companyId, phone, 
+      pwd, transactionPwd, trueName, 
+      idCard, educationBackground, bankCard, 
+      registeTime, loginTime, loginStatus, 
+      useMarket, drainageOfPlatformId, workAddress, 
+      detailWorkAddress, state, headUrl, 
+      nationalEmblem, marriage, workUnit, 
+      nowLiveAddress, detailNowLiveAddress, linkmanOneRelation, 
+      linkmanOneName, linkmanOnePhone, linkmanTwoRelation, 
+      linkmanTwoName, linkmanTwoPhone, registrationType
+      )
+    values (#{id,jdbcType=INTEGER}, #{companyid,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, 
+      #{pwd,jdbcType=VARCHAR}, #{transactionpwd,jdbcType=VARCHAR}, #{truename,jdbcType=VARCHAR}, 
+      #{idcard,jdbcType=VARCHAR}, #{educationbackground,jdbcType=VARCHAR}, #{bankcard,jdbcType=VARCHAR}, 
+      #{registetime,jdbcType=VARCHAR}, #{logintime,jdbcType=VARCHAR}, #{loginstatus,jdbcType=VARCHAR}, 
+      #{usemarket,jdbcType=VARCHAR}, #{drainageofplatformid,jdbcType=INTEGER}, #{workaddress,jdbcType=VARCHAR}, 
+      #{detailworkaddress,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{headurl,jdbcType=VARCHAR}, 
+      #{nationalemblem,jdbcType=VARCHAR}, #{marriage,jdbcType=VARCHAR}, #{workunit,jdbcType=VARCHAR}, 
+      #{nowliveaddress,jdbcType=VARCHAR}, #{detailnowliveaddress,jdbcType=VARCHAR}, #{linkmanonerelation,jdbcType=VARCHAR}, 
+      #{linkmanonename,jdbcType=VARCHAR}, #{linkmanonephone,jdbcType=VARCHAR}, #{linkmantworelation,jdbcType=VARCHAR}, 
+      #{linkmantwoname,jdbcType=VARCHAR}, #{linkmantwophone,jdbcType=VARCHAR}, #{registrationtype,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhita.model.manage.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="companyid != null">
+        companyId,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="pwd != null">
+        pwd,
+      </if>
+      <if test="transactionpwd != null">
+        transactionPwd,
+      </if>
+      <if test="truename != null">
+        trueName,
+      </if>
+      <if test="idcard != null">
+        idCard,
+      </if>
+      <if test="educationbackground != null">
+        educationBackground,
+      </if>
+      <if test="bankcard != null">
+        bankCard,
+      </if>
+      <if test="registetime != null">
+        registeTime,
+      </if>
+      <if test="logintime != null">
+        loginTime,
+      </if>
+      <if test="loginstatus != null">
+        loginStatus,
+      </if>
+      <if test="usemarket != null">
+        useMarket,
+      </if>
+      <if test="drainageofplatformid != null">
+        drainageOfPlatformId,
+      </if>
+      <if test="workaddress != null">
+        workAddress,
+      </if>
+      <if test="detailworkaddress != null">
+        detailWorkAddress,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="headurl != null">
+        headUrl,
+      </if>
+      <if test="nationalemblem != null">
+        nationalEmblem,
+      </if>
+      <if test="marriage != null">
+        marriage,
+      </if>
+      <if test="workunit != null">
+        workUnit,
+      </if>
+      <if test="nowliveaddress != null">
+        nowLiveAddress,
+      </if>
+      <if test="detailnowliveaddress != null">
+        detailNowLiveAddress,
+      </if>
+      <if test="linkmanonerelation != null">
+        linkmanOneRelation,
+      </if>
+      <if test="linkmanonename != null">
+        linkmanOneName,
+      </if>
+      <if test="linkmanonephone != null">
+        linkmanOnePhone,
+      </if>
+      <if test="linkmantworelation != null">
+        linkmanTwoRelation,
+      </if>
+      <if test="linkmantwoname != null">
+        linkmanTwoName,
+      </if>
+      <if test="linkmantwophone != null">
+        linkmanTwoPhone,
+      </if>
+      <if test="registrationtype != null">
+        registrationType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="companyid != null">
+        #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionpwd != null">
+        #{transactionpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="truename != null">
+        #{truename,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="educationbackground != null">
+        #{educationbackground,jdbcType=VARCHAR},
+      </if>
+      <if test="bankcard != null">
+        #{bankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="registetime != null">
+        #{registetime,jdbcType=VARCHAR},
+      </if>
+      <if test="logintime != null">
+        #{logintime,jdbcType=VARCHAR},
+      </if>
+      <if test="loginstatus != null">
+        #{loginstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="usemarket != null">
+        #{usemarket,jdbcType=VARCHAR},
+      </if>
+      <if test="drainageofplatformid != null">
+        #{drainageofplatformid,jdbcType=INTEGER},
+      </if>
+      <if test="workaddress != null">
+        #{workaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="detailworkaddress != null">
+        #{detailworkaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="headurl != null">
+        #{headurl,jdbcType=VARCHAR},
+      </if>
+      <if test="nationalemblem != null">
+        #{nationalemblem,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null">
+        #{marriage,jdbcType=VARCHAR},
+      </if>
+      <if test="workunit != null">
+        #{workunit,jdbcType=VARCHAR},
+      </if>
+      <if test="nowliveaddress != null">
+        #{nowliveaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="detailnowliveaddress != null">
+        #{detailnowliveaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanonerelation != null">
+        #{linkmanonerelation,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanonename != null">
+        #{linkmanonename,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanonephone != null">
+        #{linkmanonephone,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmantworelation != null">
+        #{linkmantworelation,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmantwoname != null">
+        #{linkmantwoname,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmantwophone != null">
+        #{linkmantwophone,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationtype != null">
+        #{registrationtype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhita.model.manage.User">
+    update user
+    <set>
+      <if test="companyid != null">
+        companyId = #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        pwd = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionpwd != null">
+        transactionPwd = #{transactionpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="truename != null">
+        trueName = #{truename,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        idCard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="educationbackground != null">
+        educationBackground = #{educationbackground,jdbcType=VARCHAR},
+      </if>
+      <if test="bankcard != null">
+        bankCard = #{bankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="registetime != null">
+        registeTime = #{registetime,jdbcType=VARCHAR},
+      </if>
+      <if test="logintime != null">
+        loginTime = #{logintime,jdbcType=VARCHAR},
+      </if>
+      <if test="loginstatus != null">
+        loginStatus = #{loginstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="usemarket != null">
+        useMarket = #{usemarket,jdbcType=VARCHAR},
+      </if>
+      <if test="drainageofplatformid != null">
+        drainageOfPlatformId = #{drainageofplatformid,jdbcType=INTEGER},
+      </if>
+      <if test="workaddress != null">
+        workAddress = #{workaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="detailworkaddress != null">
+        detailWorkAddress = #{detailworkaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="headurl != null">
+        headUrl = #{headurl,jdbcType=VARCHAR},
+      </if>
+      <if test="nationalemblem != null">
+        nationalEmblem = #{nationalemblem,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null">
+        marriage = #{marriage,jdbcType=VARCHAR},
+      </if>
+      <if test="workunit != null">
+        workUnit = #{workunit,jdbcType=VARCHAR},
+      </if>
+      <if test="nowliveaddress != null">
+        nowLiveAddress = #{nowliveaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="detailnowliveaddress != null">
+        detailNowLiveAddress = #{detailnowliveaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanonerelation != null">
+        linkmanOneRelation = #{linkmanonerelation,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanonename != null">
+        linkmanOneName = #{linkmanonename,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanonephone != null">
+        linkmanOnePhone = #{linkmanonephone,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmantworelation != null">
+        linkmanTwoRelation = #{linkmantworelation,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmantwoname != null">
+        linkmanTwoName = #{linkmantwoname,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmantwophone != null">
+        linkmanTwoPhone = #{linkmantwophone,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationtype != null">
+        registrationType = #{registrationtype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhita.model.manage.User">
+    update user
+    set companyId = #{companyid,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      pwd = #{pwd,jdbcType=VARCHAR},
+      transactionPwd = #{transactionpwd,jdbcType=VARCHAR},
+      trueName = #{truename,jdbcType=VARCHAR},
+      idCard = #{idcard,jdbcType=VARCHAR},
+      educationBackground = #{educationbackground,jdbcType=VARCHAR},
+      bankCard = #{bankcard,jdbcType=VARCHAR},
+      registeTime = #{registetime,jdbcType=VARCHAR},
+      loginTime = #{logintime,jdbcType=VARCHAR},
+      loginStatus = #{loginstatus,jdbcType=VARCHAR},
+      useMarket = #{usemarket,jdbcType=VARCHAR},
+      drainageOfPlatformId = #{drainageofplatformid,jdbcType=INTEGER},
+      workAddress = #{workaddress,jdbcType=VARCHAR},
+      detailWorkAddress = #{detailworkaddress,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      headUrl = #{headurl,jdbcType=VARCHAR},
+      nationalEmblem = #{nationalemblem,jdbcType=VARCHAR},
+      marriage = #{marriage,jdbcType=VARCHAR},
+      workUnit = #{workunit,jdbcType=VARCHAR},
+      nowLiveAddress = #{nowliveaddress,jdbcType=VARCHAR},
+      detailNowLiveAddress = #{detailnowliveaddress,jdbcType=VARCHAR},
+      linkmanOneRelation = #{linkmanonerelation,jdbcType=VARCHAR},
+      linkmanOneName = #{linkmanonename,jdbcType=VARCHAR},
+      linkmanOnePhone = #{linkmanonephone,jdbcType=VARCHAR},
+      linkmanTwoRelation = #{linkmantworelation,jdbcType=VARCHAR},
+      linkmanTwoName = #{linkmantwoname,jdbcType=VARCHAR},
+      linkmanTwoPhone = #{linkmantwophone,jdbcType=VARCHAR},
+      registrationType = #{registrationtype,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+<!--   ======================================================== -->
+	  	<!--判断用户名是否存在 -->
+	<select id="findphone" resultMap="BaseResultMap" parameterType="java.util.Map">
+    	<![CDATA[
+       SELECT a.* FROM user a WHERE 1=1 
+       AND a.phone=#{phone} and a.companyId=#{companyId}
+       ]]>
+	</select>
+  
+  			  	<!--APP 验证码登录时，插入用户信息 -->
+	<insert id="insertUser" parameterType="java.util.Map">
+		insert into user (phone,registeTime,loginStatus,companyId,registrationType,loginTime,drainageOfPlatformId,useMarket)
+		values (#{phone},
+		#{registrationTime},
+		#{loginStatus},
+		#{companyId},
+		#{registrationType},
+		#{registrationTime},
+		#{drainageOfPlatformId},
+		#{useMarket})
+	</insert>
+	
+	
+		<!-- 后台管理 通过手机号获取用户的id  -->
+	<select id="getId" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select id from user where phone = #{phone} and companyId = #{companyId}
+	</select>
+	
+		<!--验证码登录时，修改登录状态-->
+	<update id="updateStatus" parameterType="java.util.Map" >
+		update user
+		set loginStatus = #{loginStatus},
+		loginTime = #{loginTime}	
+		where phone = #{phone} and companyId = #{companyId}
+	</update>
+	
+	  			  	<!--APP 密码登录时，插入用户信息 -->
+	<insert id="insertUserByPwd" parameterType="java.util.Map">
+		insert into user (phone,registeTime,loginStatus,companyId,registrationType,loginTime,drainageOfPlatformId,useMarket,pwd)
+		values (#{phone},
+		#{registrationTime},
+		#{loginStatus},
+		#{companyId},
+		#{registrationType},
+		#{registrationTime},
+		#{drainageOfPlatformId},
+		#{useMarket},
+		#{pwd})
+	</insert>
+	
+					<!--APP 查询密码-->
+	<select id="getMd5pwd" parameterType="java.util.Map" resultType="java.lang.String">
+      select pwd from user where phone = #{phone} and companyId = #{companyId}
+	</select>
+	
+			<!--密码登录时，修改登录状态-->
+	<update id="updateStatusByPwd" parameterType="java.util.Map" >
+		update user
+		set loginStatus = #{loginStatus},
+		loginTime = #{loginTime},
+		pwd = #{md5Pwd}
+		where phone = #{phone} and companyId = #{companyId}
+	</update>
+</mapper>

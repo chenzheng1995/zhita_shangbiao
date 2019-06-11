@@ -7,9 +7,6 @@
      http://www.springframework.org/schema/util
     http://www.springframework.org/schema/util/spring-util.xsd">
     
-    
-    
-
 	<!-- 安全管理器 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realm" ref="realmDemo" />
