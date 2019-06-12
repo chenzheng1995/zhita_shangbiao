@@ -1,17 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.zhita</groupId>
-  <artifactId>zhita_xiaodai</artifactId>
+  <artifactId>zhita_shangbiao</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>zhita_xiaodai</name>
   <modules>
-  	<module>zhita_xiaodai_admin</module>
-  	<module>zhita_xiaodai_app</module>
-  	<module>zhita_xiaodai_service</module>
+  	<module>zhita_shangbiao_admin</module>
+  	<module>zhita_shangbiao_program</module>
+  	<module>zhita_shangbiao_service</module>
   </modules>
   
-  <properties>
+  
+	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.version>0.0.1</project.version>
 		<java.version>1.8</java.version>
@@ -240,6 +240,13 @@
             <artifactId>druid</artifactId>
             <version>1.1.12</version>
         </dependency>
+        
+            <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-s3</artifactId>
+        <version>1.11.347</version>
+    </dependency>
+
         
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
 <dependency>
