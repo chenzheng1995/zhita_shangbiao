@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhita.dao.manage.HomepageViewpagerMapper">
+  <resultMap id="BaseResultMap" type="com.zhita.model.manage.HomepageViewpager">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="viewpagerPicture" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="sort" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="isStick" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="status" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="updateTime" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="companyId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="deleted" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="operator" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="operationTime" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, viewpagerPicture, sort, isStick, status, updateTime, companyId, deleted, operator, 
+    operationTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from homepage_viewpager
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from homepage_viewpager
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zhita.model.manage.HomepageViewpager">
+    insert into homepage_viewpager (id, viewpagerPicture, sort, 
+      isStick, status, updateTime, 
+      companyId, deleted, operator, 
+      operationTime)
+    values (#{id,jdbcType=INTEGER}, #{viewpagerpicture,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+      #{isstick,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{updatetime,jdbcType=VARCHAR}, 
+      #{companyid,jdbcType=INTEGER}, #{deleted,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, 
+      #{operationtime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhita.model.manage.HomepageViewpager">
+    insert into homepage_viewpager
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="viewpagerpicture != null">
+        viewpagerPicture,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="isstick != null">
+        isStick,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="updatetime != null">
+        updateTime,
+      </if>
+      <if test="companyid != null">
+        companyId,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="operator != null">
+        operator,
+      </if>
+      <if test="operationtime != null">
+        operationTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="viewpagerpicture != null">
+        #{viewpagerpicture,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="isstick != null">
+        #{isstick,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null">
+        #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operationtime != null">
+        #{operationtime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhita.model.manage.HomepageViewpager">
+    update homepage_viewpager
+    <set>
+      <if test="viewpagerpicture != null">
+        viewpagerPicture = #{viewpagerpicture,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="isstick != null">
+        isStick = #{isstick,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        updateTime = #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null">
+        companyId = #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operationtime != null">
+        operationTime = #{operationtime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhita.model.manage.HomepageViewpager">
+    update homepage_viewpager
+    set viewpagerPicture = #{viewpagerpicture,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      isStick = #{isstick,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      updateTime = #{updatetime,jdbcType=VARCHAR},
+      companyId = #{companyid,jdbcType=INTEGER},
+      deleted = #{deleted,jdbcType=VARCHAR},
+      operator = #{operator,jdbcType=VARCHAR},
+      operationTime = #{operationtime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

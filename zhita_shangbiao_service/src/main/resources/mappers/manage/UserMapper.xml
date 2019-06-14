@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhita.dao.manage.UserMapper">
+  <resultMap id="BaseResultMap" type="com.zhita.model.manage.User">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="reallyName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="idCard" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="appointCompany" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="contactWay" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="comment" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="businessLicense" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="companyId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="isPass" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="openId" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="loginStatus" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="loginTime" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, reallyName, idCard, appointCompany, contactWay, comment, businessLicense, companyId, 
+    isPass, openId, loginStatus, loginTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zhita.model.manage.User">
+    insert into user (id, reallyName, idCard, 
+      appointCompany, contactWay, comment, 
+      businessLicense, companyId, isPass, 
+      openId, loginStatus, loginTime
+      )
+    values (#{id,jdbcType=INTEGER}, #{reallyname,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, 
+      #{appointcompany,jdbcType=VARCHAR}, #{contactway,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, 
+      #{businesslicense,jdbcType=VARCHAR}, #{companyid,jdbcType=INTEGER}, #{ispass,jdbcType=VARCHAR}, 
+      #{openid,jdbcType=VARCHAR}, #{loginstatus,jdbcType=VARCHAR}, #{logintime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhita.model.manage.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="reallyname != null">
+        reallyName,
+      </if>
+      <if test="idcard != null">
+        idCard,
+      </if>
+      <if test="appointcompany != null">
+        appointCompany,
+      </if>
+      <if test="contactway != null">
+        contactWay,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+      <if test="businesslicense != null">
+        businessLicense,
+      </if>
+      <if test="companyid != null">
+        companyId,
+      </if>
+      <if test="ispass != null">
+        isPass,
+      </if>
+      <if test="openid != null">
+        openId,
+      </if>
+      <if test="loginstatus != null">
+        loginStatus,
+      </if>
+      <if test="logintime != null">
+        loginTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="reallyname != null">
+        #{reallyname,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="appointcompany != null">
+        #{appointcompany,jdbcType=VARCHAR},
+      </if>
+      <if test="contactway != null">
+        #{contactway,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="businesslicense != null">
+        #{businesslicense,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null">
+        #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="ispass != null">
+        #{ispass,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="loginstatus != null">
+        #{loginstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="logintime != null">
+        #{logintime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhita.model.manage.User">
+    update user
+    <set>
+      <if test="reallyname != null">
+        reallyName = #{reallyname,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        idCard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="appointcompany != null">
+        appointCompany = #{appointcompany,jdbcType=VARCHAR},
+      </if>
+      <if test="contactway != null">
+        contactWay = #{contactway,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="businesslicense != null">
+        businessLicense = #{businesslicense,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null">
+        companyId = #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="ispass != null">
+        isPass = #{ispass,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        openId = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="loginstatus != null">
+        loginStatus = #{loginstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="logintime != null">
+        loginTime = #{logintime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhita.model.manage.User">
+    update user
+    set reallyName = #{reallyname,jdbcType=VARCHAR},
+      idCard = #{idcard,jdbcType=VARCHAR},
+      appointCompany = #{appointcompany,jdbcType=VARCHAR},
+      contactWay = #{contactway,jdbcType=VARCHAR},
+      comment = #{comment,jdbcType=VARCHAR},
+      businessLicense = #{businesslicense,jdbcType=VARCHAR},
+      companyId = #{companyid,jdbcType=INTEGER},
+      isPass = #{ispass,jdbcType=VARCHAR},
+      openId = #{openid,jdbcType=VARCHAR},
+      loginStatus = #{loginstatus,jdbcType=VARCHAR},
+      loginTime = #{logintime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

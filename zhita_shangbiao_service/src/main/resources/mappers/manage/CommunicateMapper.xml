@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhita.dao.manage.CommunicateMapper">
+  <resultMap id="BaseResultMap" type="com.zhita.model.manage.Communicate">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="communicateTime" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="sysuserId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="appointmentId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="comment" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="deleted" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, communicateTime, sysuserId, appointmentId, comment, deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from communicate
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from communicate
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zhita.model.manage.Communicate">
+    insert into communicate (id, communicateTime, sysuserId, 
+      appointmentId, comment, deleted
+      )
+    values (#{id,jdbcType=INTEGER}, #{communicatetime,jdbcType=VARCHAR}, #{sysuserid,jdbcType=INTEGER}, 
+      #{appointmentid,jdbcType=INTEGER}, #{comment,jdbcType=VARCHAR}, #{deleted,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhita.model.manage.Communicate">
+    insert into communicate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="communicatetime != null">
+        communicateTime,
+      </if>
+      <if test="sysuserid != null">
+        sysuserId,
+      </if>
+      <if test="appointmentid != null">
+        appointmentId,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="communicatetime != null">
+        #{communicatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="sysuserid != null">
+        #{sysuserid,jdbcType=INTEGER},
+      </if>
+      <if test="appointmentid != null">
+        #{appointmentid,jdbcType=INTEGER},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhita.model.manage.Communicate">
+    update communicate
+    <set>
+      <if test="communicatetime != null">
+        communicateTime = #{communicatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="sysuserid != null">
+        sysuserId = #{sysuserid,jdbcType=INTEGER},
+      </if>
+      <if test="appointmentid != null">
+        appointmentId = #{appointmentid,jdbcType=INTEGER},
+      </if>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhita.model.manage.Communicate">
+    update communicate
+    set communicateTime = #{communicatetime,jdbcType=VARCHAR},
+      sysuserId = #{sysuserid,jdbcType=INTEGER},
+      appointmentId = #{appointmentid,jdbcType=INTEGER},
+      comment = #{comment,jdbcType=VARCHAR},
+      deleted = #{deleted,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

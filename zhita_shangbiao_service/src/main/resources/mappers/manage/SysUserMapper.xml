@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhita.dao.manage.SysUserMapper">
+  <resultMap id="BaseResultMap" type="com.zhita.model.manage.SysUser">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="number" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pwd" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="companyId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="deleted" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="operator" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="operationTime" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, number, account, pwd, companyId, deleted, operator, operationTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zhita.model.manage.SysUser">
+    insert into sys_user (id, number, account, 
+      pwd, companyId, deleted, 
+      operator, operationTime)
+    values (#{id,jdbcType=INTEGER}, #{number,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+      #{pwd,jdbcType=VARCHAR}, #{companyid,jdbcType=INTEGER}, #{deleted,jdbcType=VARCHAR}, 
+      #{operator,jdbcType=VARCHAR}, #{operationtime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhita.model.manage.SysUser">
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="pwd != null">
+        pwd,
+      </if>
+      <if test="companyid != null">
+        companyId,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="operator != null">
+        operator,
+      </if>
+      <if test="operationtime != null">
+        operationTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null">
+        #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operationtime != null">
+        #{operationtime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhita.model.manage.SysUser">
+    update sys_user
+    <set>
+      <if test="number != null">
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        pwd = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null">
+        companyId = #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operationtime != null">
+        operationTime = #{operationtime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhita.model.manage.SysUser">
+    update sys_user
+    set number = #{number,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      pwd = #{pwd,jdbcType=VARCHAR},
+      companyId = #{companyid,jdbcType=INTEGER},
+      deleted = #{deleted,jdbcType=VARCHAR},
+      operator = #{operator,jdbcType=VARCHAR},
+      operationTime = #{operationtime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
