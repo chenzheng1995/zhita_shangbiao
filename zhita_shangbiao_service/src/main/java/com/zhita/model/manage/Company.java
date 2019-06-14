@@ -1,11 +1,12 @@
 package com.zhita.model.manage;
 
+//公司表
 public class Company {
     private Integer id;
 
-    private String company;
+    private String company;//公司名
 
-    private String deleted;
+    private String deleted;//假删除（删除：1；没删除0）
 
     public Company(Integer id, String company, String deleted) {
         this.id = id;

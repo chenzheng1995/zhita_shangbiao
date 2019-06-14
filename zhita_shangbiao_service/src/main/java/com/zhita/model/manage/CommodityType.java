@@ -1,19 +1,20 @@
 package com.zhita.model.manage;
 
+//商品分类表
 public class CommodityType {
     private Integer id;
 
-    private String typename;
+    private String typename;//分类名称
 
-    private Integer sort;
+    private Integer sort;//排序
 
-    private Integer companyid;
+    private Integer companyid;//公司id
 
-    private String deleted;
+    private String deleted;//假删除（删除：1；没删除0）
 
-    private String operator;
+    private String operator;//操作人
 
-    private String operationtime;
+    private String operationtime;//操作时间
 
     public CommodityType(Integer id, String typename, Integer sort, Integer companyid, String deleted, String operator, String operationtime) {
         this.id = id;

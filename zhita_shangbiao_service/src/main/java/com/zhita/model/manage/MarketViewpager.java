@@ -1,25 +1,26 @@
 package com.zhita.model.manage;
 
+//市场轮播图表
 public class MarketViewpager {
     private Integer id;
 
-    private String viewpagerpicture;
+    private String viewpagerpicture;//轮播图图片
 
-    private Integer sort;
+    private Integer sort;//排序
 
-    private String isstick;
+    private String isstick;//是否置顶（1：置顶；0：不置顶）
 
-    private String status;
+    private String status;//状态（1：开启；2：关闭）
 
-    private String updatetime;
+    private String updatetime;//更新时间
 
-    private Integer companyid;
+    private Integer companyid;//公司id
 
-    private String deleted;
+    private String deleted;//假删除（删除：1；没删除0）
 
-    private String operator;
+    private String operator;//操作人
 
-    private String operationtime;
+    private String operationtime;//操作时间
 
     public MarketViewpager(Integer id, String viewpagerpicture, Integer sort, String isstick, String status, String updatetime, Integer companyid, String deleted, String operator, String operationtime) {
         this.id = id;

@@ -1,17 +1,18 @@
 package com.zhita.model.manage;
 
+//沟通记录表
 public class Communicate {
     private Integer id;
 
-    private String communicatetime;
+    private String communicatetime;//沟通时间
 
-    private Integer sysuserid;
+    private Integer sysuserid;//系统用户id（业务员）
 
-    private Integer appointmentid;
+    private Integer appointmentid;//预约表id
 
-    private String comment;
+    private String comment;//备注
 
-    private String deleted;
+    private String deleted;//假删除（删除：1；没删除0）
 
     public Communicate(Integer id, String communicatetime, Integer sysuserid, Integer appointmentid, String comment, String deleted) {
         this.id = id;

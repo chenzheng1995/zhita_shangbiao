@@ -1,33 +1,34 @@
 package com.zhita.model.manage;
 
+//商品表
 public class Commodity {
     private Integer id;
 
-    private Integer typeid;
+    private Integer typeid;//商品分类id
 
-    private String commodityname;
+    private String commodityname;//商品名称
 
-    private String commoditypicture;
+    private String commoditypicture;//商品图片
 
-    private String commodityintroduce;
+    private String commodityintroduce;//商品介绍
 
-    private String commoditytype;
+    private String commoditytype;//商品类型
 
-    private String commodityprice;
+    private String commodityprice;//商品价格
 
-    private String commoditystatus;
+    private String commoditystatus;//商品状态（1：上架；2：下架；3：已出售）
 
-    private Integer sort;
+    private Integer sort;//排序
 
-    private String usefullife;
+    private String usefullife;//有效期限
 
-    private String conservationgroups;
+    private String conservationgroups;//保护群组
 
-    private String deleted;
+    private String deleted;//假删除（删除：1；没删除0）
 
-    private String operator;
+    private String operator;//操作人
 
-    private String operationtime;
+    private String operationtime;//操作时间
 
     public Commodity(Integer id, Integer typeid, String commodityname, String commoditypicture, String commodityintroduce, String commoditytype, String commodityprice, String commoditystatus, Integer sort, String usefullife, String conservationgroups, String deleted, String operator, String operationtime) {
         this.id = id;

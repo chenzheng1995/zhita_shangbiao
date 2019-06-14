@@ -1,19 +1,20 @@
 package com.zhita.model.manage;
 
+//预约表
 public class Appointment {
     private Integer id;
 
-    private Integer commodityid;
+    private Integer commodityid;//商品id
 
-    private String name;
+    private String name;//姓名
 
-    private String contactway;
+    private String contactway;//联系方式
 
-    private String submittime;
+    private String submittime;//提交时间
 
-    private String comment;
+    private String comment;//备注
 
-    private String deleted;
+    private String deleted;//假删除（删除：1；没删除0）
 
     public Appointment(Integer id, Integer commodityid, String name, String contactway, String submittime, String comment, String deleted) {
         this.id = id;

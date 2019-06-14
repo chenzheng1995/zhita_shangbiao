@@ -1,29 +1,31 @@
 package com.zhita.model.manage;
 
+
+//用户表
 public class User {
     private Integer id;
 
-    private String reallyname;
+    private String reallyname;//真实姓名
 
-    private String idcard;
+    private String idcard;//身份证号
 
-    private String appointcompany;
+    private String appointcompany;//指定公司
 
-    private String contactway;
+    private String contactway;//联系方式
 
-    private String comment;
+    private String comment;//备注
 
-    private String businesslicense;
+    private String businesslicense;//营业执照
 
-    private Integer companyid;
+    private Integer companyid;//公司id
 
-    private String ispass;
+    private String ispass;//审核是否通过（1：通过；2：不通过；0：待审核）
 
-    private String openid;
+    private String openid;//openid
 
-    private String loginstatus;
+    private String loginstatus;//登录状态(1:已登录；0：未登录)
 
-    private String logintime;
+    private String logintime;//登录时间
 
     public User(Integer id, String reallyname, String idcard, String appointcompany, String contactway, String comment, String businesslicense, Integer companyid, String ispass, String openid, String loginstatus, String logintime) {
         this.id = id;

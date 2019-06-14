@@ -14,7 +14,7 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id, number, account, pwd, companyId, deleted, operator, operationTime
+    id, number, account, pwd, companyId, deleted,loginstatus,logintime, operator, operationTime
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -28,10 +28,10 @@
   </delete>
   <insert id="insert" parameterType="com.zhita.model.manage.SysUser">
     insert into sys_user (id, number, account, 
-      pwd, companyId, deleted, 
+      pwd, companyId, deleted,loginstatus,logintime, 
       operator, operationTime)
     values (#{id,jdbcType=INTEGER}, #{number,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
-      #{pwd,jdbcType=VARCHAR}, #{companyid,jdbcType=INTEGER}, #{deleted,jdbcType=VARCHAR}, 
+      #{pwd,jdbcType=VARCHAR}, #{companyid,jdbcType=INTEGER}, #{deleted,jdbcType=VARCHAR}, #{loginstatus,jdbcType=VARCHAR}, #{logintime,jdbcType=VARCHAR},
       #{operator,jdbcType=VARCHAR}, #{operationtime,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zhita.model.manage.SysUser">
@@ -123,6 +123,8 @@
       pwd = #{pwd,jdbcType=VARCHAR},
       companyId = #{companyid,jdbcType=INTEGER},
       deleted = #{deleted,jdbcType=VARCHAR},
+     loginstatus= #{loginstatus,jdbcType=VARCHAR},
+     logintime= #{logintime,jdbcType=VARCHAR},
       operator = #{operator,jdbcType=VARCHAR},
       operationTime = #{operationtime,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}

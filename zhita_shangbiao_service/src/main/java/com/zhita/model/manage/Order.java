@@ -2,34 +2,36 @@ package com.zhita.model.manage;
 
 import java.math.BigDecimal;
 
+
+//订单表
 public class Order {
     private Integer id;
 
-    private String ordernumber;
+    private String ordernumber;//订单编号
 
-    private String username;
+    private String username;//用户名
 
-    private String contactway;
+    private String contactway;//联系方式
 
-    private String idcard;
+    private String idcard;//身份证号
 
-    private String appointcompany;
+    private String appointcompany;//指定公司
 
-    private String comment;
+    private String comment;//备注
 
-    private String businesslicense;
+    private String businesslicense;//营业执照
 
-    private String commodityname;
+    private String commodityname;//商品名称
 
-    private Integer companyid;
+    private Integer companyid;//公司id
 
-    private String submittime;
+    private String submittime;//提交时间
 
-    private BigDecimal realityprice;
+    private BigDecimal realityprice;//实际付款金额
 
-    private String operator;
+    private String operator;//操作人
 
-    private String operationtime;
+    private String operationtime;//操作时间
 
     public Order(Integer id, String ordernumber, String username, String contactway, String idcard, String appointcompany, String comment, String businesslicense, String commodityname, Integer companyid, String submittime, BigDecimal realityprice, String operator, String operationtime) {
         this.id = id;
