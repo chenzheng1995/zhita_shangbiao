@@ -14,7 +14,7 @@ public class User {
     private String contactway;//联系方式
 
     private String comment;//备注
-
+    
     private String businesslicense;//营业执照
 
     private Integer companyid;//公司id
@@ -26,8 +26,10 @@ public class User {
     private String loginstatus;//登录状态(1:已登录；0：未登录)
 
     private String logintime;//登录时间
+    
+    private String registrationtime;//注册时间
 
-    public User(Integer id, String reallyname, String idcard, String appointcompany, String contactway, String comment, String businesslicense, Integer companyid, String ispass, String openid, String loginstatus, String logintime) {
+    public User(Integer id, String reallyname, String idcard, String appointcompany, String contactway, String comment, String businesslicense, Integer companyid, String ispass, String openid, String loginstatus, String logintime,String registrationtime) {
         this.id = id;
         this.reallyname = reallyname;
         this.idcard = idcard;
@@ -40,6 +42,7 @@ public class User {
         this.openid = openid;
         this.loginstatus = loginstatus;
         this.logintime = logintime;
+        this.registrationtime = registrationtime;
     }
 
     public User() {
@@ -140,5 +143,13 @@ public class User {
 
     public void setLogintime(String logintime) {
         this.logintime = logintime == null ? null : logintime.trim();
+    }
+    
+    public String getRegistrationtime() {
+        return logintime;
+    }
+
+    public void setRegistrationtime(String registrationtime) {
+        this.registrationtime = registrationtime == null ? null : registrationtime.trim();
     }
 }

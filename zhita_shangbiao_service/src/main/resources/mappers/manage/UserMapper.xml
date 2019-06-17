@@ -15,11 +15,12 @@
       <arg column="openId" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="loginStatus" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="loginTime" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="registrationTime" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
     id, reallyName, idCard, appointCompany, contactWay, comment, businessLicense, companyId, 
-    isPass, openId, loginStatus, loginTime
+    isPass, openId, loginStatus, loginTime,registrationTime
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -35,12 +36,12 @@
     insert into user (id, reallyName, idCard, 
       appointCompany, contactWay, comment, 
       businessLicense, companyId, isPass, 
-      openId, loginStatus, loginTime
+      openId, loginStatus, loginTime,registrationTime
       )
     values (#{id,jdbcType=INTEGER}, #{reallyname,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, 
       #{appointcompany,jdbcType=VARCHAR}, #{contactway,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, 
       #{businesslicense,jdbcType=VARCHAR}, #{companyid,jdbcType=INTEGER}, #{ispass,jdbcType=VARCHAR}, 
-      #{openid,jdbcType=VARCHAR}, #{loginstatus,jdbcType=VARCHAR}, #{logintime,jdbcType=VARCHAR}
+      #{openid,jdbcType=VARCHAR}, #{loginstatus,jdbcType=VARCHAR}, #{logintime,jdbcType=VARCHAR},#{registrationtime,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.zhita.model.manage.User">
@@ -82,6 +83,9 @@
       <if test="logintime != null">
         loginTime,
       </if>
+      <if test="registrationtime != null">
+        registrationTime,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -119,6 +123,9 @@
       </if>
       <if test="logintime != null">
         #{logintime,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationtime != null">
+        #{registrationtime,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -158,6 +165,9 @@
       <if test="logintime != null">
         loginTime = #{logintime,jdbcType=VARCHAR},
       </if>
+      <if test="logintime != null">
+        registrationtime = #{registrationtime,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -173,7 +183,8 @@
       isPass = #{ispass,jdbcType=VARCHAR},
       openId = #{openid,jdbcType=VARCHAR},
       loginStatus = #{loginstatus,jdbcType=VARCHAR},
-      loginTime = #{logintime,jdbcType=VARCHAR}
+      loginTime = #{logintime,jdbcType=VARCHAR},
+      registrationTime = #{registrationtime,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
