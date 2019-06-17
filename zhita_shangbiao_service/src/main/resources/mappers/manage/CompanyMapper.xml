@@ -70,4 +70,10 @@
       deleted = #{deleted,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <!-- 后台管理     查询所有公司-->
+  <select id="queryAll" resultType="com.zhita.model.manage.Company">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from company where deleted=0
+  </select>
 </mapper>

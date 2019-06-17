@@ -16,7 +16,8 @@
   <sql id="Base_Column_List">
     id, number, account, pwd, companyId, deleted,loginstatus,logintime, operator, operationTime
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <!-- 后台管理        根据主键id查询系统用户信息 -->
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.zhita.model.manage.SysUser">
     select 
     <include refid="Base_Column_List" />
     from sys_user
@@ -27,12 +28,10 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.zhita.model.manage.SysUser">
-    insert into sys_user (id, number, account, 
-      pwd, companyId, deleted,loginstatus,logintime, 
-      operator, operationTime)
-    values (#{id,jdbcType=INTEGER}, #{number,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
-      #{pwd,jdbcType=VARCHAR}, #{companyid,jdbcType=INTEGER}, #{deleted,jdbcType=VARCHAR}, #{loginstatus,jdbcType=VARCHAR}, #{logintime,jdbcType=VARCHAR},
-      #{operator,jdbcType=VARCHAR}, #{operationtime,jdbcType=VARCHAR})
+    insert into sys_user (number, account, 
+      pwd, companyId,operator, operationTime)
+    values (#{number,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+      #{pwd,jdbcType=VARCHAR}, #{companyid,jdbcType=INTEGER},#{operator,jdbcType=VARCHAR}, #{operationtime,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zhita.model.manage.SysUser">
     insert into sys_user
@@ -116,17 +115,39 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <!-- 后台管理         对修改后的系统用户信息进行保存 -->
   <update id="updateByPrimaryKey" parameterType="com.zhita.model.manage.SysUser">
     update sys_user
     set number = #{number,jdbcType=VARCHAR},
       account = #{account,jdbcType=VARCHAR},
       pwd = #{pwd,jdbcType=VARCHAR},
       companyId = #{companyid,jdbcType=INTEGER},
-      deleted = #{deleted,jdbcType=VARCHAR},
-     loginstatus= #{loginstatus,jdbcType=VARCHAR},
-     logintime= #{logintime,jdbcType=VARCHAR},
       operator = #{operator,jdbcType=VARCHAR},
       operationTime = #{operationtime,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- 后台管理        查询系统用户表所有信息 -->
+  <select id="queryAllSysuser" resultType="com.zhita.model.manage.SysUser">
+  	select 
+  	 <include refid="Base_Column_List" />
+  	 from sys_user where deleted=0
+  </select>
+  <!-- 后台管理       修改假删除状态 -->
+  <update id="updateFalseDel" parameterType="java.lang.Integer">
+ 	update sys_user set deleted=1 where id=#{arg0}
+  </update>
+  <!-- 后台管理       查询该账号是否存在 -->
+  <select id="queryByAccount" parameterType="java.lang.String" resultType="com.zhita.model.manage.SysUser">
+  	select 
+  	 <include refid="Base_Column_List" />
+  	 from sys_user where account=#{arg0} and deleted=0
+  </select>
+  <!--后台管理        登录成功  修改登录状态和登录时间字段  -->
+  <update id="updateStatusAndTime" parameterType="com.zhita.model.manage.SysUser">
+  	update sys_user set loginstatus=#{loginstatus},logintime=#{logintime} where id=#{id} and deleted=0
+  </update>
+  <!-- 后台管理        退出登录 -->
+  <update id="updateLoginStatus">
+  	update sys_user set loginstatus=#{arg0} where id=#{arg1}
   </update>
 </mapper>
