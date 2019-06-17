@@ -22,6 +22,12 @@ public class SysUser {
 
     private String operationtime;//操作时间
     
+    public SysUser(Integer id,String loginstatus, String logintime){
+    	 this.id = id;
+    	 this.loginstatus = loginstatus;
+         this.logintime = logintime;
+    }
+    
     public SysUser(Integer id, String number, String account, String pwd, Integer companyid, String deleted, String loginstatus, String logintime,String operator, String operationtime) {
         this.id = id;
         this.number = number;

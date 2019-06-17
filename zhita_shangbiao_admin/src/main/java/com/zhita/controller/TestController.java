@@ -1,5 +1,8 @@
 package com.zhita.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zhita.service.test.TestService;
+import com.zhita.util.Timestamps;
 
 
 
@@ -48,5 +52,9 @@ public class TestController {
 		map.put("name",name);
 		return map;
 	
+	}
+	public static void main(String[] args) throws ParseException {
+		String loginTime = System.currentTimeMillis()+"";  //获取当前时间戳
+		System.out.println(loginTime);
 	}
 }
