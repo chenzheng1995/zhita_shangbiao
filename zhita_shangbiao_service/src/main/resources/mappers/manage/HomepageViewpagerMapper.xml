@@ -19,6 +19,7 @@
     id, viewpagerPicture, sort, isStick, status, updateTime, companyId, deleted, operator, 
     operationTime
   </sql>
+  <!--  后台管理       根据主键id查询当前对象信息 -->
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -29,15 +30,11 @@
     delete from homepage_viewpager
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <!-- 后台管理        添加首页轮播图信息 -->
   <insert id="insert" parameterType="com.zhita.model.manage.HomepageViewpager">
-    insert into homepage_viewpager (id, viewpagerPicture, sort, 
-      isStick, status, updateTime, 
-      companyId, deleted, operator, 
-      operationTime)
-    values (#{id,jdbcType=INTEGER}, #{viewpagerpicture,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
-      #{isstick,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{updatetime,jdbcType=VARCHAR}, 
-      #{companyid,jdbcType=INTEGER}, #{deleted,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, 
-      #{operationtime,jdbcType=VARCHAR})
+    insert into homepage_viewpager (viewpagerPicture, sort,companyId,operator,operationTime)
+    values (#{viewpagerpicture,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER},#{companyid,jdbcType=INTEGER},
+    #{operator,jdbcType=VARCHAR},#{operationtime,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zhita.model.manage.HomepageViewpager">
     insert into homepage_viewpager
@@ -139,17 +136,29 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <!-- 后台管理          对当前对象进行修改保存 -->
   <update id="updateByPrimaryKey" parameterType="com.zhita.model.manage.HomepageViewpager">
     update homepage_viewpager
     set viewpagerPicture = #{viewpagerpicture,jdbcType=VARCHAR},
       sort = #{sort,jdbcType=INTEGER},
-      isStick = #{isstick,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR},
       updateTime = #{updatetime,jdbcType=VARCHAR},
       companyId = #{companyid,jdbcType=INTEGER},
-      deleted = #{deleted,jdbcType=VARCHAR},
       operator = #{operator,jdbcType=VARCHAR},
       operationTime = #{operationtime,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- 后台管理       查询首页轮播图所有信息 -->
+  <select id="queryAll" resultType="com.zhita.model.manage.HomepageViewpager">
+  	select 
+    <include refid="Base_Column_List" />
+    from homepage_viewpager where deleted=0 and companyId=#{arg0} order by isstick desc,sort
+  </select>
+  <!-- 后台管理        修改当前对象的假删除状态 -->
+  <update id="upaFalseDel" parameterType="java.lang.Integer">
+  	update homepage_viewpager set deleted=1 where id=#{arg0}
+  </update>
+  <!--后台管理       修改当前对象为置顶  -->
+  <update id="upaIsStick" parameterType="java.lang.Integer">
+  	update homepage_viewpager set isstick=1 where id=#{arg0}
   </update>
 </mapper>

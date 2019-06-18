@@ -12,6 +12,7 @@ import com.zhita.dao.manage.CompanyMapper;
 import com.zhita.dao.manage.SysUserMapper;
 import com.zhita.model.manage.Company;
 import com.zhita.model.manage.SysUser;
+import com.zhita.util.DateListUtil;
 import com.zhita.util.Timestamps;
 @Service
 public class SysuserServiceImp implements IntSysuserService{
@@ -39,11 +40,13 @@ public class SysuserServiceImp implements IntSysuserService{
    }
    
    //后台管理--查询系统用户表所有信息
-   public List<SysUser> queryAllSysuser(){
-	   List<SysUser> list=sysUserMapper.queryAllSysuser();
+   public List<SysUser> queryAllSysuser(Integer companyId){
+	   List<SysUser> list=sysUserMapper.queryAllSysuser(companyId);
 	   for (int i = 0; i < list.size(); i++) {
+		   list.get(i).setLogintime(Timestamps.stampToDate(list.get(i).getLogintime()));//登录时间   把时间戳改为时间格式（年月日时分秒）
 		   list.get(i).setOperationtime(Timestamps.stampToDate(list.get(i).getOperationtime()));//操作时间    把时间戳改为时间格式（年月日时分秒）
 	   }
+	   DateListUtil.ListSort1(list);//将集合按照    登录时间进行倒排序
 	   return list;
    }
    

@@ -15,7 +15,7 @@ public interface IntSysuserService {
     List<Company> queryAll();
     
     //后台管理--查询系统用户表所有信息
-    List<SysUser> queryAllSysuser();
+    List<SysUser> queryAllSysuser(Integer companyId);
     
     //后台管理---根据主键id查询系统用户信息
     SysUser selectByPrimaryKey(Integer id);

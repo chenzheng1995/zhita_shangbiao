@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zhita.model.manage.Company;
-import com.zhita.model.manage.HomepageViewpager;
-import com.zhita.service.manage.homepage.IntHomepageService;
+import com.zhita.model.manage.MarketViewpager;
+import com.zhita.service.manage.market.IntMarketService;
 import com.zhita.service.manage.sysuser.IntSysuserService;
 
 @Controller
-@RequestMapping("/homepage")
-public class HomepageViewpagerController {
+@RequestMapping("/market")
+public class MarketViewpagerController {
 	@Autowired
-	private IntHomepageService intHomepageService;
+	private IntMarketService intMarketService;
 	
 	@Autowired
 	private IntSysuserService intSysuserService;
@@ -24,8 +24,8 @@ public class HomepageViewpagerController {
 	//后台管理---查询首页轮播图所有信息
 	@ResponseBody
 	@RequestMapping("/queryAll")
-	public List<HomepageViewpager> queryAll(Integer companyId){
-		List<HomepageViewpager> list=intHomepageService.queryAll(companyId);
+	public List<MarketViewpager> queryAll(Integer companyId){
+		List<MarketViewpager> list=intMarketService.queryAll(companyId);
 		return list;
 	}
 	
@@ -40,24 +40,24 @@ public class HomepageViewpagerController {
 	//后台管理---添加首页轮播图信息
 	@ResponseBody
 	@RequestMapping("/intset")
-	public int insert(HomepageViewpager homepageViewpager){
-		int num=intHomepageService.insert(homepageViewpager);
+	public int insert(MarketViewpager marketViewpager){
+		int num=intMarketService.insert(marketViewpager);
 		return num;
 	}
 	
 	//后台管理---根据主键id查询当前对象信息
 	@ResponseBody
 	@RequestMapping("/selectByPrimaryKey")
-    public HomepageViewpager selectByPrimaryKey(Integer id){
-    	HomepageViewpager homepageViewpager=intHomepageService.selectByPrimaryKey(id);
-    	return homepageViewpager;
+    public MarketViewpager selectByPrimaryKey(Integer id){
+		MarketViewpager marketViewpager=intMarketService.selectByPrimaryKey(id);
+    	return marketViewpager;
     }
 	
 	//后台管理---对当前对象进行修改保存
 	@ResponseBody
 	@RequestMapping("/updateByPrimaryKey")
-    public int updateByPrimaryKey(HomepageViewpager record){
-    	int num=intHomepageService.updateByPrimaryKey(record);
+    public int updateByPrimaryKey(MarketViewpager record){
+    	int num=intMarketService.updateByPrimaryKey(record);
     	return num;
     }
 
@@ -66,7 +66,7 @@ public class HomepageViewpagerController {
 	@ResponseBody
 	@RequestMapping("/upaFalseDel")
     public int upaFalseDel(Integer id){
-    	int num=intHomepageService.upaFalseDel(id);
+    	int num=intMarketService.upaFalseDel(id);
     	return num;
     }
     
@@ -74,7 +74,7 @@ public class HomepageViewpagerController {
 	@ResponseBody
 	@RequestMapping("/upaIsStick")
     public int upaIsStick(Integer id){
-    	int num=intHomepageService.upaIsStick(id);
+    	int num=intMarketService.upaIsStick(id);
     	return num;
     }
 }

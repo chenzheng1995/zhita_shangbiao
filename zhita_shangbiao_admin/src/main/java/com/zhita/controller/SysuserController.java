@@ -1,7 +1,10 @@
 package com.zhita.controller;
 
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.zhita.model.manage.Company;
 import com.zhita.model.manage.SysUser;
 import com.zhita.service.manage.sysuser.IntSysuserService;
+import com.zhita.util.ListPageUtil;
+import com.zhita.util.PageUtil;
 
 @Controller
 @RequestMapping("/sysuser")
@@ -21,9 +26,19 @@ public class SysuserController {
 	//后台管理--查询系统用户表所有信息
 	@ResponseBody
 	@RequestMapping("/queryAllSysuser")
-	public List<SysUser> queryAllSysuser(){
-		List<SysUser> list=intSysuserService.queryAllSysuser();
-		return list;
+	public Map<String,Object> queryAllSysuser(Integer companyId,Integer page){
+		List<SysUser> listto=new ArrayList<>();
+		List<SysUser> list=intSysuserService.queryAllSysuser(companyId);
+		
+		ListPageUtil listPageUtil=new ListPageUtil(list,page,10);
+		listto.addAll(listPageUtil.getData());
+		
+		PageUtil pageUtil=new PageUtil(listPageUtil.getCurrentPage(), listPageUtil.getPageSize(),listPageUtil.getTotalCount());
+		
+		Map<String,Object> map=new HashMap<>();
+		map.put("listsysuser", listto);
+		map.put("pageutil", pageUtil);
+		return map;
 	}
 	
 	
