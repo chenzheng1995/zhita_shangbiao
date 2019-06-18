@@ -21,7 +21,7 @@ public interface SysUserMapper {
     int updateByPrimaryKey(SysUser record);
     
     //后台管理--查询系统用户表所有信息
-    List<SysUser> queryAllSysuser();
+    List<SysUser> queryAllSysuser(Integer companyId);
     
     //后台管理---修改假删除状态
     int updateFalseDel(Integer id);

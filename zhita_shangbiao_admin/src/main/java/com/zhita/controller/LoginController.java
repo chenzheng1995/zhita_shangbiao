@@ -40,6 +40,7 @@ public class LoginController {
 						 map.put("msg", "用户登录成功，登录状态修改成功");
 						 map.put("loginStatus", "1");//1：返给前端1  代表登录成功        0：返给前端0   代表未登录
 						 map.put("account", sysUser.getAccount());
+						 map.put("companyId", sysUser.getCompanyid());
 					 }
 				 }else{
 					 map.put("msg", "密码错误");

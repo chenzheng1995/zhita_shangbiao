@@ -130,7 +130,7 @@
   <select id="queryAllSysuser" resultType="com.zhita.model.manage.SysUser">
   	select 
   	 <include refid="Base_Column_List" />
-  	 from sys_user where deleted=0
+  	 from sys_user where deleted=0 and companyId=#{arg0}
   </select>
   <!-- 后台管理       修改假删除状态 -->
   <update id="updateFalseDel" parameterType="java.lang.Integer">

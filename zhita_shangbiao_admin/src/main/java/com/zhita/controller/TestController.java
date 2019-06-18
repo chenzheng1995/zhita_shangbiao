@@ -54,7 +54,6 @@ public class TestController {
 	
 	}
 	public static void main(String[] args) throws ParseException {
-		String loginTime = System.currentTimeMillis()+"";  //获取当前时间戳
-		System.out.println(loginTime);
+		System.out.println(Timestamps.stampToDate(""));
 	}
 }
