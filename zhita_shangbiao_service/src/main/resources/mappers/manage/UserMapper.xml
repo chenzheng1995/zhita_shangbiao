@@ -187,4 +187,43 @@
       registrationTime = #{registrationtime,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  
+  
+<!--   =================================================================== -->
+			<!-- 小程序 查看用户是否存在 -->
+	<select id="getOpenId" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select count(openId) from user where openId=#{openId} and companyId=#{companyId}
+	</select>
+	
+			  	<!--小程序 插入用户数据 -->
+	<insert id="setUser" parameterType="java.util.Map">
+		insert into user (openId,companyId,registrationTime,loginTime,loginStatus)
+		values (#{openId},
+		#{companyId},
+		#{registrationTime},
+		#{registrationTime},
+		"1")
+	</insert>
+	
+				<!-- 小程序 获取用户的id -->
+	<select id="getId" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select id from user where openId=#{openId} and companyId=#{companyId}
+	</select>
+	
+	
+				<!--登录时，修改登录状态-->
+	<update id="updateUser" parameterType="java.util.Map" >
+		update user
+		set loginStatus =1,
+		loginTime = #{registrationTime}
+		where openId = #{openId} and companyId = #{companyId}
+	</update>
+	
+			<!-- 退出时，修改登录状态修改 -->
+	<update id="updatelogOutStatus" parameterType="map" >
+		update user
+		set loginStatus = #{loginStatus}
+		where id = #{userId} and companyId = #{companyId} 
+	</update>
 </mapper>

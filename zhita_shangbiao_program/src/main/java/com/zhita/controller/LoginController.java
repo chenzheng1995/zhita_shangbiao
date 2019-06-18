@@ -15,7 +15,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -34,65 +34,86 @@ import com.zhita.util.SMSUtil;
 @Controller
 @RequestMapping(value = "/login")
 public class LoginController {
-	@Resource(name = "loginServiceImp")
-	private LoginService intLoginService;
-
-	public LoginService getIntLoginService() {
-		return intLoginService;
-	}
-
-	public void setIntLoginService(LoginService intLoginService) {
-		this.intLoginService = intLoginService;
-	}
+	@Autowired
+	LoginService loginService;
 
 	// 微信登录
 	@RequestMapping("/WXlogin")
 	@ResponseBody
-	public Map<String, Object> getPhoneNumber(String code, String company) {
+	public Map<String, Object> getPhoneNumber(String code, Integer companyId) {
+		int num = 0;
+		int number = 0;
 		Map<String, Object> map = new HashMap<>();
-		if (StringUtils.isEmpty(code) || StringUtils.isEmpty(company)) {
-			map.put("msg", "code,company不能为空");
+		if (StringUtils.isEmpty(code) || StringUtils.isEmpty(companyId)) {
+			map.put("msg", "code,companyId不能为空");
 			map.put("SCode", "401");
 			return map;
-			}else {	
-				PostAndGet pGet = new PostAndGet();
-				String string = pGet.sendGet("https://api.weixin.qq.com/sns/jscode2session?js_code=" + code + "&appid=wx95e29f36ef71f6a2" +
-				"&secret=db67bd09f1ebed05dbd0d5d384b14a84" + "&grant_type=authorization_code");
-				JSONObject jsonObject = JSON.parseObject(string);
-				String openId =  (String) jsonObject.get("openid");   //获取openid
-                
-				
-		return map;
-	}
-	}
-	
+		} else {
+			PostAndGet pGet = new PostAndGet();
+			String string = pGet.sendGet(
+					"https://api.weixin.qq.com/sns/jscode2session?js_code=" + code + "&appid=wx95e29f36ef71f6a2"
+							+ "&secret=db67bd09f1ebed05dbd0d5d384b14a84" + "&grant_type=authorization_code");
+			JSONObject jsonObject = JSON.parseObject(string);
+			String openId = (String) jsonObject.get("openid");// 获取openid
+//			String openId = "o9dX15UdHy9lgQZxmqZws_PqmwXQ";
+			String registrationTime = System.currentTimeMillis() + ""; // 获取当前时间戳
+			num = loginService.getOpenId(openId, companyId);// 查看这个用户是否登录过
+			if (num == 0) {
+				number = loginService.setUser(openId, companyId, registrationTime);
+				if (number == 1) {
+					int id = loginService.getId(openId, companyId); // 获取该用户的id
+					map.put("msg", "用户登录成功，数据插入成功");
+					map.put("SCode", "200");
+					map.put("loginStatus", "1");
+					map.put("userId", id);
+				} else {
+					map.put("msg", "用户登录失败，用户数据插入失败");
+					map.put("SCode", "405");
+				}
+			} else {
+				number = loginService.updateUser(openId, companyId, registrationTime);
+				if (number == 1) {
+					int id = loginService.getId(openId, companyId); // 获取该用户的id
+					map.put("msg", "用户登录成功，登录状态修改成功");
+					map.put("SCode", "200");
+					map.put("loginStatus", "1");
+					map.put("userId", id);
+				} else {
+					map.put("msg", "用户登录失败，登录状态修改失败");
+					map.put("SCode", "405");
+				}
 
-	
-//	// 退出登录
-//	@RequestMapping("/logOut")
-//	@ResponseBody
-//	@Transactional
-//	public Map<String, String> logOut(int userId,String company) {
-//		Map<String, String> map = new HashMap<>();
-//		if (StringUtils.isEmpty(userId)) {
-//			map.put("msg", "userId不能为空");
-//			return map;
-//			}else {
-//				String loginStatus = "0";
-//				int number = intLoginService.updatelogOutStatus(loginStatus,userId,company);
-//				if (number == 1) {														
-//					map.put("msg", "用户退出成功，登录状态修改成功");
-//					map.put("SCode", "200");
-//					map.put("loginStatus", loginStatus);
-//				} else {
-//					map.put("msg", "用户退出失败，登录状态修改失败");
-//					map.put("SCode", "408");
-//				}
-//			}
-//
-//		return map;
-//
-//	}
+			}
+			return map;
+		}
+
+	}
+
+	// 退出登录
+	@RequestMapping("/logOut")
+	@ResponseBody
+	@Transactional
+	public Map<String, String> logOut(int userId,Integer companyId) {
+		Map<String, String> map = new HashMap<>();
+		if (StringUtils.isEmpty(userId) || StringUtils.isEmpty(companyId)) {
+			map.put("msg", "userId和companyId不能为空");
+			return map;
+			}else {
+				String loginStatus = "0";
+				int number = loginService.updatelogOutStatus(loginStatus,userId,companyId);
+				if (number == 1) {														
+					map.put("msg", "用户退出成功，登录状态修改成功");
+					map.put("SCode", "200");
+					map.put("loginStatus", loginStatus);
+				} else {
+					map.put("msg", "用户退出失败，登录状态修改失败");
+					map.put("SCode", "408");
+				}
+			}
+
+		return map;
+
+	}
 //	
 //	
 //	// 判断用户是否登录
@@ -128,6 +149,5 @@ public class LoginController {
 //		return map;
 //
 //	}
-	
 
 }
